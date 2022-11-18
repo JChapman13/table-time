@@ -7,7 +7,7 @@ const UserSchema = new Schema(
     lastName: String,
     email: String,
     phoneNumber: String,
-    reservations: [reservationSchema],
+    // reservations: [reservationSchema],
     categories: Array,
     favourites: Array,
   },

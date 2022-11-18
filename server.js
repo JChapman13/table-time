@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 
 app.use("/", require("./routes/dashboard.js"));
-app.use("/restaurant", require("./routes/restaurant.js"));
+app.use("/restaurants", require("./routes/restaurants.js"));
 app.use("/reservations", require("./routes/reservations.js"));
 app.use("/pickthree", require("./routes/pickthree.js"));
 app.use("/location", require("./routes/location.js"));
