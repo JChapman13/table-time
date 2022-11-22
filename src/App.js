@@ -8,8 +8,10 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import { CircularProgress } from "@mui/material";
 import ReservationPage from "./pages/ReservationPage/ReservationPage";
-import MobileNavBar from "./components/MobileNavBar/MobileNavBar";
+import MobileNavBar from "./navbar/MobileNavBar";
 import DetailPage from "./pages/DetailPage/DetailPage";
+import MobileTopBar from "./topbar/MobileTopBar.jsx";
+import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -115,48 +117,52 @@ function App() {
   if (isLoading) {
     return (
       <>
-        <MobileNavBar />
+        <MobileTopBar />
         <CircularProgress />
+        <MobileNavBar />
       </>
     );
   }
   return (
     <>
       <Router>
+        <MobileTopBar coordinates={coordinates} />
         <MobileNavBar
           categories={categories}
           coordinates={coordinates}
           searchRestaurants={searchRestaurants}
         />
-        <Routes>
-          <Route path="/welcome" element={<AuthPage />} />
-          <Route
-            path="/"
-            element={
-              <DashboardPage
-                coordinates={coordinates}
-                dashRestaurants={dashRestaurants}
-                categories={categories}
-                searchRestaurants={searchRestaurants}
-              />
-            }
-          />
-          <Route path="/pickthree" element={<PickThreePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/detail" element={<DetailPage />} />
-          <Route
-            path="/search"
-            element={
-              <SearchPage
-                coordinates={coordinates}
-                categories={categories}
-                searchRestaurants={searchRestaurants}
-                searchedRestaurants={searchedRestaurants}
-              />
-            }
-          />
-          <Route path="/reservation" element={<ReservationPage />} />
-        </Routes>
+        <div className="app-wrapper">
+          <Routes>
+            <Route path="/welcome" element={<AuthPage />} />
+            <Route
+              path="/"
+              element={
+                <DashboardPage
+                  coordinates={coordinates}
+                  dashRestaurants={dashRestaurants}
+                  categories={categories}
+                  searchRestaurants={searchRestaurants}
+                />
+              }
+            />
+            <Route path="/pickthree" element={<PickThreePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/detail" element={<DetailPage />} />
+            <Route
+              path="/search"
+              element={
+                <SearchPage
+                  coordinates={coordinates}
+                  categories={categories}
+                  searchRestaurants={searchRestaurants}
+                  searchedRestaurants={searchedRestaurants}
+                />
+              }
+            />
+            <Route path="/reservation" element={<ReservationPage />} />
+          </Routes>
+        </div>
       </Router>
     </>
   );
